@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $jaosnBody = json_encode($request_data); 
     $call_invoice =paypalPost($invoice_endpoint,$jaosnBody,$data_arr ['client_id'],$data_arr['client_secret']);
     if($call_invoice['isError']==true){ 
-        // file_put_contents('pp_response.json',$call_invoice);
         echo (json_encode(array('is_error'=>true,'message'=>'Null Response')));
     }else{ 
         if(isset($call_invoice['response']['id'])){ 

@@ -1,6 +1,6 @@
 <?php 
 function getApiConfig($reqValue){
-    $is_sanboxmode = false;
+    $is_sanboxmode = true;
     $access_token_file = 'paypal_access_token.txt';
     if($is_sanboxmode){
         $api_endpoint ="https://api-m.sandbox.paypal.com";
