@@ -5,16 +5,13 @@ function genrateToken($client_id, $client_secret)
 {
     $access_token_file = getApiConfig('access_token_file');
     $api_config = getApiConfig('all');
-    $api_endpoint = $api_config['api_endpoint'] . '/v1/oauth2/token';
-    // Set up the authorization header
+    $api_endpoint = $api_config['api_endpoint'] . '/v1/oauth2/token'; 
     $headers = array(
         'Accept: application/json',
         'Accept-Language: en_US',
         'Authorization: Basic ' . base64_encode($client_id . ':' . $client_secret)
-    );
-    // Set up the API request data
-    $data = http_build_query(array('grant_type' => 'client_credentials'));
-    // Send the request to PayPal
+    ); 
+    $data = http_build_query(array('grant_type' => 'client_credentials')); 
     $ch = curl_init();
     curl_setopt_array(
         $ch,
@@ -23,9 +20,7 @@ function genrateToken($client_id, $client_secret)
             CURLOPT_RETURNTRANSFER => true, 
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            // CURLOPT_VERBOSE => 1,
-            // CURLOPT_STDERR => $fp,
+            CURLOPT_CUSTOMREQUEST => 'POST', 
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => $headers,
@@ -41,25 +36,20 @@ function genrateToken($client_id, $client_secret)
         } else {
         }
     }
-}
-// genrateToken();
-
+} 
 function paypalPost($url, $JsonBody, $client_id, $client_secret)
 {
-    $access_token_file = getApiConfig('access_token_file');
-    // Try to get the access token from the file
+    $access_token_file = getApiConfig('access_token_file'); 
     if (file_exists($access_token_file)) {
         $access_token = file_get_contents($access_token_file);
     }
     if (empty($access_token)) {
         genrateToken($client_id, $client_secret);
     }
-    $api_endpoint = getApiConfig('api_endpoint') . $url;
-    // Try to get the access token from the file
+    $api_endpoint = getApiConfig('api_endpoint') . $url; 
     if (file_exists($access_token_file)) {
         $access_token = file_get_contents($access_token_file);
-    }
-    // $fp = fopen(dirname(__FILE__) . '/errorlog.txt', 'w');
+    } 
     $ch = curl_init();
     curl_setopt_array(
         $ch,
@@ -71,9 +61,7 @@ function paypalPost($url, $JsonBody, $client_id, $client_secret)
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_VERBOSE => 1,
-            // CURLOPT_STDERR => $fp,
+            CURLOPT_CUSTOMREQUEST => 'POST', 
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_POSTFIELDS => $JsonBody,
             CURLOPT_HTTPHEADER => array(
@@ -82,8 +70,7 @@ function paypalPost($url, $JsonBody, $client_id, $client_secret)
                 'Authorization: Bearer ' . $access_token
             ),
         )
-    );
-    // Set up the invoice data
+    ); 
     $response = curl_exec($ch);
     // file_put_contents('response.log', $response, FILE_APPEND);
     curl_close($ch);
@@ -105,21 +92,17 @@ function paypalPost($url, $JsonBody, $client_id, $client_secret)
 }
 function paypalGet($url, $JsonBody, $client_id, $client_secret)
 {
-    $access_token_file = getApiConfig('access_token_file');
-    // Try to get the access token from the file
+    $access_token_file = getApiConfig('access_token_file'); 
     if (file_exists($access_token_file)) {
         $access_token = file_get_contents($access_token_file);
     }
     if (empty($access_token)) {
         genrateToken($client_id, $client_secret);
     }
-    $api_endpoint = getApiConfig('api_endpoint') . $url;
-    // file_put_contents('response.log', $api_endpoint . "\n", FILE_APPEND);
-    // Try to get the access token from the file
+    $api_endpoint = getApiConfig('api_endpoint') . $url; 
     if (file_exists($access_token_file)) {
         $access_token = file_get_contents($access_token_file);
-    }
-    // $fp = fopen(dirname(__FILE__) . '/errorlog.txt', 'w');
+    } 
     $ch = curl_init();
     curl_setopt_array(
         $ch,
@@ -131,9 +114,7 @@ function paypalGet($url, $JsonBody, $client_id, $client_secret)
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_VERBOSE => 1,
-            // CURLOPT_STDERR => $fp,
+            CURLOPT_CUSTOMREQUEST => 'GET', 
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_POSTFIELDS => $JsonBody,
             CURLOPT_HTTPHEADER => array(
@@ -142,8 +123,7 @@ function paypalGet($url, $JsonBody, $client_id, $client_secret)
                 'Authorization: Bearer ' . $access_token
             ),
         )
-    );
-    // Set up the invoice data
+    ); 
     $response = curl_exec($ch);
     // file_put_contents('response.log', $response, FILE_APPEND);
     curl_close($ch);

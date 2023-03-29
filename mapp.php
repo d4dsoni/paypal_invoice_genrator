@@ -4,13 +4,10 @@ require "common.php";
 $invoice_endpoint = '/v2/invoicing/invoices'; 
 
 // Disable error reporting
-error_reporting(0);
-// Disable display of errors
+error_reporting(0); 
 ini_set('display_errors', 0);
 
-header('Content-Type: application/json');
-$userAgent = $_SERVER['HTTP_USER_AGENT'];
-$ipAddress = $_SERVER['REMOTE_ADDR'];
+header('Content-Type: application/json');  
 $domainName = $_SERVER['HTTP_HOST'];
 $headers = getallheaders();
 $request_auth_key = $headers['server_auth_key'];

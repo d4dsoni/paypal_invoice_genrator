@@ -3,12 +3,9 @@
 require "common.php";
 $invoice_endpoint = '/v2/invoicing/invoices';
 // Disable error reporting
-error_reporting(0);
-// Disable display of errors
+error_reporting(0); 
 ini_set('display_errors', 0);
-header('Content-Type: application/json');
-$userAgent = $_SERVER['HTTP_USER_AGENT'];
-$ipAddress = $_SERVER['REMOTE_ADDR'];
+header('Content-Type: application/json'); 
 $domainName = $_SERVER['HTTP_HOST'];
 $headers = getallheaders();
 $request_auth_key = $headers['server_auth_key'];
@@ -28,10 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                echo (json_encode(array('is_error' => true, 'msg'=>$get_invoice_url['response']['details'])));
             }
         }
-         file_put_contents('response.log',json_encode($get_invoice_url['response']). "\n", FILE_APPEND);
         if (isset($get_invoice_url['response']['href'])) {
-            echo (json_encode(array('is_error' => false, 'invoive_url' => $get_invoice_url['response']['href'], 'is_shared' => 'yes')));
-            // file_put_contents('pp_success_response.json', json_encode($get_invoice_url['response']));
+            echo (json_encode(array('is_error' => false, 'invoive_url' => $get_invoice_url['response']['href'], 'is_shared' => 'yes'))); 
         }
 
     }

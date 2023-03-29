@@ -1,8 +1,4 @@
 <?php
-// https://gist.github.com/jaywilliams/bee2512f0f12d6791315d6939119e135
-// Forked:  https://gist.github.com/magnetikonline/650e30e485c0f91f2f40
-// Usage:   php -S localhost:8080 dumprequest.php
-
 // Path to store all incoming requests
 define('LOG_OUTPUT', __DIR__ . '/requests.log');
 
