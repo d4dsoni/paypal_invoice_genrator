@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule \.txt$ - [F]
+RewriteRule \.log$ - [F]

@@ -1,0 +1,45 @@
+*   Trying 192.229.210.155:443...
+* Connected to api-m.paypal.com (192.229.210.155) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: jurisdictionC=US; jurisdictionST=Delaware; businessCategory=Private Organization; serialNumber=3014267; C=US; ST=California; L=San Jose; O=PayPal, Inc.; CN=www.paypal.com
+*  start date: Nov  9 00:00:00 2022 GMT
+*  expire date: Dec 10 23:59:59 2023 GMT
+*  subjectAltName: host "api-m.paypal.com" matched cert's "api-m.paypal.com"
+*  issuer: C=US; O=DigiCert Inc; OU=www.digicert.com; CN=DigiCert SHA2 Extended Validation Server CA
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multi-use
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Using Stream ID: 1 (easy handle 0x556a58a20040)
+> POST /v1/oauth2/token HTTP/2
+Host: api-m.paypal.com
+accept: application/json
+accept-language: en_US
+authorization: Basic QVR1NDRlN3dRVVNmMk0teS1xZHVidExHMEVmZ2JpamVESE42NmptU0dmbzBfbGhDTGZ6OXVKdk9SenNDZzI5Mi1rODc1WW94Q3J5Q3huSkE6RUNuTlBFaHIyaDJqRl9PUHQ2aVJfaWQ4WDBWRWcwRVoyYzNtNklFTXZ6Qm4ydkJCbkw5eVpqbjFCX2VLMzFXQ0Z5V29TclFmQ0FDZ1pncmo=
+content-length: 29
+content-type: application/x-www-form-urlencoded
+
+* We are completely uploaded and fine
+* old SSL session ID is stale, removing
+* Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
+< HTTP/2 200 
+< cache-control: max-age=0, no-cache, no-store, must-revalidate
+< content-type: application/json
+< date: Tue, 28 Mar 2023 14:02:48 GMT
+< paypal-debug-id: 8094e2b02bfa8
+< pragma: no-cache
+< server: ECAcc (saa/838C)
+< set-cookie: l7_az=ccg13.slc; Path=/; Domain=paypal.com; Expires=Tue, 28 Mar 2023 14:32:48 GMT; HttpOnly; Secure
+< strict-transport-security: max-age=63072000; includeSubDomains; preload
+< traceparent: 00-00000000000000000008094e2b02bfa8-f9b23e9dfd732b01-01
+< x-paypal-token-service: IAAS
+< content-length: 574
+< 
+* Connection #0 to host api-m.paypal.com left intact
